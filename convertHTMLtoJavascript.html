@@ -11,31 +11,31 @@
 				var parentElement = "element" + parentNestLevel;
 				var Nodes = parent.childNodes;
 				for(var i = 0, currentNode; (currentNode = Nodes[i]) !== undefined; i++){
-		            if (currentNode.nodeType == 1){
-		            	elementCounter++;
-		            	var currentNestLevel = parentNestLevel + '_' + elementCounter;
-		            	var currentElement = "element" + currentNestLevel;
-		            	createElements += '\n\t' + 'var ' + currentElement + ' = document.createElement("' + currentNode.tagName.toLowerCase() + '");';
+					if (currentNode.nodeType == 1){
+						elementCounter++;
+						var currentNestLevel = parentNestLevel + '_' + elementCounter;
+						var currentElement = "element" + currentNestLevel;
+						createElements += '\n\t' + 'var ' + currentElement + ' = document.createElement("' + currentNode.tagName.toLowerCase() + '");';
 						Array.prototype.slice.call(currentNode.attributes).forEach(function(attribute) {
 							setAttributes += '\n\t' + currentElement + '.setAttribute("' + attribute.name + '","' + attribute.value + '");';
 						});
 						appendChildren += '\n\t' + parentElement +'.appendChild(' + currentElement + ');';
 						loopThroughChildNodes(currentNode,currentNestLevel);
-		            }else{
+					}else{
 						if(keepWhitespace===true){
 							var text = currentNode.textContent;
 						}else{
 							var text = currentNode.textContent.trim();
 						}
-		            	if (text!=""){
-			            	textNodeCounter++;
-			            	var currentNestLevel = parentNestLevel + '_' + textNodeCounter;
-			            	var currentTextNode = "textNode" + currentNestLevel;
-			            	createTextNodes += '\n\t' + 'var ' + currentTextNode + ' = document.createTextNode("' + text.replace(/"/g,'\\x22') + '");';
-			            	appendChildren += '\n\t' + parentElement +'.appendChild(' + currentTextNode + ');';
-			            }
-		            }
-		        }
+						if (text!=""){
+							textNodeCounter++;
+							var currentNestLevel = parentNestLevel + '_' + textNodeCounter;
+							var currentTextNode = "textNode" + currentNestLevel;
+							createTextNodes += '\n\t' + 'var ' + currentTextNode + ' = document.createTextNode("' + text.replace(/"/g,'\\x22') + '");';
+							appendChildren += '\n\t' + parentElement +'.appendChild(' + currentTextNode + ');';
+						}
+					}
+				}
 			}
 			var temp = document.createElement('template');
 			var createElements = "";
@@ -71,48 +71,48 @@
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
-		    width:90%;
-		    padding:30px;
-		    margin:40px auto;
-		    background: #FFF;
-		    border-radius: 10px;
-		    -webkit-border-radius:10px;
-		    -moz-border-radius: 10px;
-		    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-		    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-		    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+			width:90%;
+			padding:30px;
+			margin:40px auto;
+			background: #FFF;
+			border-radius: 10px;
+			-webkit-border-radius:10px;
+			-moz-border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+			-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+			-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
 		}
 		.inner-wrap{
-		    padding: 30px;
-		    background: #F8F8F8;
-		    border-radius: 6px;
-		    margin-bottom: 15px;
+			padding: 30px;
+			background: #F8F8F8;
+			border-radius: 6px;
+			margin-bottom: 15px;
 		}
 		h1{
-		    background: #2A88AD;
-		    padding: 20px 30px 15px 30px;
-		    margin: -30px -30px 30px -30px;
-		    border-radius: 10px 10px 0 0;
-		    -webkit-border-radius: 10px 10px 0 0;
-		    -moz-border-radius: 10px 10px 0 0;
-		    color: #fff;
-		    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-		    font-size: 30px;
-		    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    border: 1px solid #257C9E;
+			background: #2A88AD;
+			padding: 20px 30px 15px 30px;
+			margin: -30px -30px 30px -30px;
+			border-radius: 10px 10px 0 0;
+			-webkit-border-radius: 10px 10px 0 0;
+			-moz-border-radius: 10px 10px 0 0;
+			color: #fff;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+			font-size: 30px;
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			border: 1px solid #257C9E;
 		}
 		h1 > span{
-		    display: block;
-		    margin-top: 2px;
-		    font-size: 13px;
+			display: block;
+			margin-top: 2px;
+			font-size: 13px;
 		}
 		label{
-		    display: block;
-		    font-size: 13px;
-		    color: #888;
-		    margin-bottom: 15px;
+			display: block;
+			font-size: 13px;
+			color: #888;
+			margin-bottom: 15px;
 		}
 		textarea{
 			resize: vertical;
@@ -154,68 +154,68 @@
 			outline-width: 0;
 		}
 		.section{
-		    font-size: 20px;
-		    color: #2A88AD;
-		    margin-bottom: 5px;
+			font-size: 20px;
+			color: #2A88AD;
+			margin-bottom: 5px;
 		}
 		.section span {
-		    background: #2A88AD;
-		    padding: 5px 10px 5px 10px;
-		    position: absolute;
-		    border-radius: 50%;
-		    -webkit-border-radius: 50%;
-		    -moz-border-radius: 50%;
-		    border: 4px solid #fff;
-		    font-size: 14px;
-		    margin-left: -45px;
-		    color: #fff;
-		    margin-top: -3px;
+			background: #2A88AD;
+			padding: 5px 10px 5px 10px;
+			position: absolute;
+			border-radius: 50%;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border: 4px solid #fff;
+			font-size: 14px;
+			margin-left: -45px;
+			color: #fff;
+			margin-top: -3px;
 		}
 		button{
-		    background: #2A88AD;
-		    margin: 10px;
-		    padding: 8px 20px 8px 20px;
-		    border-radius: 5px;
-		    -webkit-border-radius: 5px;
-		    -moz-border-radius: 5px;
-		    color: #fff;
-		    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-		    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-		    border: 1px solid #257C9E;
-		    font-size: 15px;
+			background: #2A88AD;
+			margin: 10px;
+			padding: 8px 20px 8px 20px;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			color: #fff;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			border: 1px solid #257C9E;
+			font-size: 15px;
 		}
 		button:hover{
-		    background: #2A6881;
-		    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-		    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-		    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+			background: #2A6881;
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
 		}
 		.option{
-		    width: 250px;
-		    font-size: 12px;
-		    color: #4D4D4D;
-		    margin-top: 10px;
-		    text-align: right;
+			width: 250px;
+			font-size: 12px;
+			color: #4D4D4D;
+			margin-top: 10px;
+			text-align: right;
 		}
 	</style>
 </head>
 <body>
 	<div class="form">
 		<h1>Convert your HTML to Javascript Now!<span>This works in all modern browser. If your using IE (which you shouldn't be) switch to a browser that supports html5 templates.</span></h1>
-	    <div class="section"><span>1</span>Enter the HTML you wish to convert</div>
-	    <div class="inner-wrap">
-	        <label>HTML Input <textarea id="input" name="input"></textarea></label>
-	    </div>
+		<div class="section"><span>1</span>Enter the HTML you wish to convert</div>
+		<div class="inner-wrap">
+			<label>HTML Input <textarea id="input" name="input"></textarea></label>
+		</div>
 		<button onclick="convert()">Convert</button>
 		<span class="option">
 			<input type="checkbox" id="whitespace">Don't get rid of the whitespace in my HTML
 		</span>
-	    <div class="section"><span>2</span>Copy the Javascript</div>
-	    <div class="inner-wrap">
-	        <label>Javascript Output <textarea id="output" name="output"></textarea></label>
-	    </div>
+		<div class="section"><span>2</span>Copy the Javascript</div>
+		<div class="inner-wrap">
+			<label>Javascript Output <textarea id="output" name="output"></textarea></label>
+		</div>
 	</div>
 </body>
 </html>
